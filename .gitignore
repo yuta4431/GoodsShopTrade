@@ -1,0 +1,29 @@
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker/mysql/data/
+
+# PHP
+vendor/
+composer.lock
+
+# Config（機密情報）
+config/database.php
+.env
+
+# Uploads
+storage/uploads/*
+!storage/uploads/.gitkeep
+
+# Logs
+*.log
+
+# Cache
+cache/
+tmp/

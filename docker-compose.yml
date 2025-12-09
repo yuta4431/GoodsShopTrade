@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # PHP + Apache
+  web:
+    build: ./docker/php
+    container_name: goods_shop_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html
+      - ./src:/var/www/src
+      - ./config:/var/www/config
+      - ./storage:/var/www/storage
+    depends_on:
+      - db
+    networks:
+      - goods_shop_network
+
+  # MySQL
+  db:
+    image: mysql:8.0
+    container_name: goods_shop_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: goods_shop
+      MYSQL_USER: goods_user
+      MYSQL_PASSWORD: goods_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - goods_shop_network
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: goods_shop_phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - goods_shop_network
+
+networks:
+  goods_shop_network:
+    driver: bridge

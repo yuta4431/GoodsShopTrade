@@ -6,7 +6,7 @@ services:
     build: ./docker/php
     container_name: goods_shop_web
     ports:
-      - "8080:80"
+      - "8888:80"
     volumes:
       - ./public:/var/www/html
       - ./src:/var/www/src

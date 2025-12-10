@@ -27,7 +27,6 @@ GoodsShop&Trade
 ・ログイン/ログアウト
 ・SESSION管理
 ・パスワードハッシュ化
-・reCAPTCHA v3による不正ログイン防止
 
 1.2 会員登録
 ・メールアドレス・パスワードによる新規登録
@@ -176,7 +175,6 @@ GoodsShop&Trade
 ・CSRF対策（トークン検証）
 ・SQLインジェクション対策（PDO、プリペアドステートメント）
 ・パスワードハッシュ化（password_hash）
-・reCAPTCHA v3
 ・Basic認証（管理画面）
 
 
